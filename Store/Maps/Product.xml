@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Store" 
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <!-- alias:取别名   
+         assembly:表示类所在的文件
+         type:表示该类的完整的名称
+      -->
+  <alias>
+    <typeAlias alias="Product" type="Store.Models.Product" />
+  </alias>
+
+  <resultMaps>
+    <!--如果不取别名要使用类的全路径‘Store.Models.Product’-->
+    <resultMap id="BaseResultMap" class="Product">
+      <result property="Id" column="ID" dbType="INT" />
+      <result property="Name" column="NAME" dbType="VARCHAR" />
+      <result property="Category" column="CATEGORY" dbType="VARCHAR" />
+      <result property="Price" column="PRICE" dbType="DECIMAL" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="FindAll" resultMap="BaseResultMap">
+      SELECT *
+      FROM T_PRODUCT
+    </select>
+  </statements>
+</sqlMap>
